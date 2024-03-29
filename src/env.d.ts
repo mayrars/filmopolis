@@ -13,5 +13,6 @@ interface ImportMetaEnv {
   [key: string]: any;
   readonly NG_APP_URL: string;
   readonly NG_APP_KEY: string;
+  readonly NG_APP_URLIMG: string;
 }
 
