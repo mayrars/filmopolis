@@ -13,11 +13,15 @@ import { RouterLink } from '@angular/router';
 })
 export class HomeComponent implements OnInit{
   private _moviesService = inject(MoviesService);
+  topTrending: Movie[] = [];
   topMovies: Movie[] = [];
   urlImg: string = environment.imgUrl
   ngOnInit(): void {
-    this._moviesService.getPopularMovies().subscribe(data=>{
+    this._moviesService.getTrendingMovies().subscribe(data=>{
       this.topMovies = data.results;
+    })
+    this._moviesService.getTrendingNow().subscribe(data=>{
+      this.topTrending = data.results;
     })
   }
 }
