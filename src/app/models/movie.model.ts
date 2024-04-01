@@ -11,6 +11,7 @@ export interface Movie {
     poster_path:       string;
     first_air_date:    Date;
     title:              string;
+    name?:              string;
     vote_average:      number;
     vote_count:        number;
 }
