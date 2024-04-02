@@ -2,7 +2,7 @@
 
 <div class="container mx-auto px-4 py-5">
   <h2 class="text-3xl font-bold tracking-tight text-black sm:text-4xl pb-3">Trending now</h2>
-  <div class="grid lgrid lg:md:grid-cols-5 sm:grid-cols-2 grid-cols-2 grid-rows-5 gap-4">
+  <div class="grid lgrid lg:md:grid-cols-5 sm:grid-cols-2 grid-cols-2 gap-4">
     @for (serie of topTrending; track serie.id) {
       @if($index<10){
         <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
