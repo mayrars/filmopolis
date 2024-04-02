@@ -1,11 +1,12 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { MoviesService } from '../../services/movies.service';
 import { Categorie } from '../../models/category.model';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
