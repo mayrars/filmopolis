@@ -30,14 +30,24 @@ export class MoviesService {
     return this.http.get(`${this.baseUrl}trending/movie/day`,httpOptions)
   }
 
-  //Get Movies
-  getMovies():Observable<any>{
+  //Get popular Movies
+  getPopularMovies():Observable<any>{
     const httpOptions = {
       headers: new HttpHeaders()
       .set('Content-Type', 'application/json')
       .set('Authorization',`Bearer ${environment.apiKey}`)
     }
     return this.http.get(`{this.baseUrl}movie/popular`, httpOptions)
+  }
+  //Get movies with parameters
+  getMovies(genre?:string):Observable<any>{
+    const genreId = genre ? `&with_genres=${genre}` : ''
+    const httpOptions = {
+      headers: new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('Authorization',`Bearer ${environment.apiKey}`)
+    }
+    return this.http.get(`${this.baseUrl}discover/movie?include_adult=false${genreId}`, httpOptions)
   }
   //Get categories
   getCategories():Observable<any>{
