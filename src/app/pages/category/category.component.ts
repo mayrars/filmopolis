@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { MoviesService } from '../../services/movies.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Movie } from '../../models/movie.model';
 import { environment } from '../../../environments/environment';
 import { PaginationComponent } from '../../components/pagination/pagination.component';
@@ -8,15 +8,16 @@ import { PaginationComponent } from '../../components/pagination/pagination.comp
 @Component({
   selector: 'app-category',
   standalone: true,
-  imports: [PaginationComponent],
+  imports: [PaginationComponent,RouterLink],
   templateUrl: './category.component.html',
   styleUrl: './category.component.css'
 })
 export class CategoryComponent implements OnInit{
   moviesList:Movie[] = [];
   category:string = '';
+  categoryId:string = '';
   totalPages?: number;
-  currentPage:number=0;
+  currentPage:number=1;
   itemsPerPage:number=20;
   totalResults: number = 0;
   urlImg: string = environment.imgUrl
@@ -24,13 +25,21 @@ export class CategoryComponent implements OnInit{
   private _router = inject(ActivatedRoute);
   ngOnInit(): void {
     this._router.params.subscribe(params => {
-      this._moviesService.getMovies(params['id']).subscribe(data=>{
+      this.categoryId = params['id'];
+      this._moviesService.getMovies(params['id'],1).subscribe(data=>{
         this.currentPage = data.page;
         this.totalPages = data.total_pages;
         this.totalResults = data.total_results;
-        console.log(this.totalResults);
         this.moviesList = data.results;
       })
+    })
+  }
+  changePage(page:number){
+    this._moviesService.getMovies(this.categoryId,page).subscribe(data=>{
+      this.currentPage = data.page;
+      this.totalPages = data.total_pages;
+      this.totalResults = data.total_results;
+      this.moviesList = data.results;
     })
   }
 }
