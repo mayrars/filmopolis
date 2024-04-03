@@ -2,6 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
+import { Movie } from '../models/movie.model';
 
 @Injectable({
   providedIn: 'root'
@@ -40,14 +41,15 @@ export class MoviesService {
     return this.http.get(`{this.baseUrl}movie/popular`, httpOptions)
   }
   //Get movies with parameters
-  getMovies(genre?:string):Observable<any>{
+  getMovies(genre?:string, page?:number):Observable<any>{
     const genreId = genre ? `&with_genres=${genre}` : ''
+    const pageNumber = page ? `&page=${page}` : '1'      
     const httpOptions = {
       headers: new HttpHeaders()
       .set('Content-Type', 'application/json')
       .set('Authorization',`Bearer ${environment.apiKey}`)
     }
-    return this.http.get(`${this.baseUrl}discover/movie?include_adult=false${genreId}`, httpOptions)
+    return this.http.get(`${this.baseUrl}discover/movie?include_adult=false${genreId}${pageNumber}`, httpOptions)
   }
   //Get categories
   getCategories():Observable<any>{
@@ -57,5 +59,13 @@ export class MoviesService {
       .set('Authorization',`Bearer ${environment.apiKey}`)
     }
     return this.http.get(`${this.baseUrl}genre/movie/list`, httpOptions)
+  }
+  getMovie(movieId: number):Observable<any>{
+    const httpOptions = {
+      headers: new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('Authorization',`Bearer ${environment.apiKey}`)
+    }
+    return this.http.get(`${this.baseUrl}movie/${movieId}`, httpOptions)
   }
 }
