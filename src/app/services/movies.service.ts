@@ -68,4 +68,12 @@ export class MoviesService {
     }
     return this.http.get(`${this.baseUrl}movie/${movieId}`, httpOptions)
   }
+  getCredits(movieId: number):Observable<any>{
+    const httpOptions = {
+      headers: new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('Authorization',`Bearer ${environment.apiKey}`)
+    }
+    return this.http.get(`${this.baseUrl}movie/${movieId}/credits`, httpOptions)
+  }
 }
