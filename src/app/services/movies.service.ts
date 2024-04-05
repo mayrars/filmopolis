@@ -38,7 +38,7 @@ export class MoviesService {
       .set('Content-Type', 'application/json')
       .set('Authorization',`Bearer ${environment.apiKey}`)
     }
-    return this.http.get(`{this.baseUrl}movie/popular`, httpOptions)
+    return this.http.get(`${this.baseUrl}movie/popular`, httpOptions)
   }
   //Get movies with parameters
   getMovies(genre?:string, page?:number):Observable<any>{
@@ -75,5 +75,21 @@ export class MoviesService {
       .set('Authorization',`Bearer ${environment.apiKey}`)
     }
     return this.http.get(`${this.baseUrl}movie/${movieId}/credits`, httpOptions)
+  }
+  getSimilar(movieId: number):Observable<any>{
+    const httpOptions = {
+      headers: new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('Authorization',`Bearer ${environment.apiKey}`)
+    }
+    return this.http.get(`${this.baseUrl}movie/${movieId}/similar`, httpOptions)
+  }
+  getVideos(movieId: number):Observable<any>{
+    const httpOptions = {
+      headers: new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('Authorization',`Bearer ${environment.apiKey}`)
+    }
+    return this.http.get(`${this.baseUrl}movie/${movieId}/videos`, httpOptions)
   }
 }
