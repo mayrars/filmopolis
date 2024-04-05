@@ -4,11 +4,13 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Movie } from '../../models/movie.model';
 import { environment } from '../../../environments/environment';
 import { PaginationComponent } from '../../components/pagination/pagination.component';
+import { CardComponent } from '../../components/card/card.component';
+import { CardSkeletonComponent } from '../../components/card-skeleton/card-skeleton.component';
 
 @Component({
   selector: 'app-category',
   standalone: true,
-  imports: [PaginationComponent,RouterLink],
+  imports: [PaginationComponent,RouterLink,CardComponent, CardSkeletonComponent],
   templateUrl: './category.component.html',
   styleUrl: './category.component.css'
 })
