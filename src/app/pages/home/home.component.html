@@ -1,22 +1,14 @@
-
-
-<div class="container mx-auto px-4 py-5">
-  <h2 class="text-3xl font-bold tracking-tight text-black sm:text-4xl pb-3">Trending now</h2>
-  <div class="grid lgrid lg:md:grid-cols-5 sm:grid-cols-2 grid-cols-2 gap-4">
+<div class="container mx-auto px-4 py-5 ">
+  <h2 class="text-3xl font-bold tracking-tight text-black sm:text-4xl pb-3">Popular movies</h2>
+  <div class="grid lgrid lg:md:grid-cols-8 sm:grid-cols-2 grid-cols-2 gap-4">
+    @for (serie of popularMovies; track serie.id) {
+      <app-card [movie]="serie" class="h-full"/>      
+    }
+  </div>
+  <h2 class="text-3xl font-bold tracking-tight text-black sm:text-4xl pb-3 mt-12">Trending now</h2>
+  <div class="grid lgrid lg:md:grid-cols-8 sm:grid-cols-2 grid-cols-2 gap-4">
     @for (serie of topTrending; track serie.id) {
-      @if($index<10){
-        <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-          <a href="#">
-            <img src="{{urlImg}}{{serie.poster_path}}" class="poster m-auto">
-          </a>
-          <div class="p-5">
-              <a href="#">
-                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white text-center">{{ serie.title }}</h5>
-                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white text-center">{{ serie.name }}</h5>
-              </a>
-          </div>
-        </div>
-      }        
+      <app-card [movie]="serie" class="h-full"/>
     }
   </div>
 </div>
