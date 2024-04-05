@@ -1,37 +1,41 @@
 @if(movie){
-  <div class="container mx-auto mt-8 px-4 py-5">
-    <div class="grid grid-cols-10 gap-8">
-      <div class="col-span-2">
-        <img src="{{urlImg}}{{movie.poster_path}}" alt="{{movie.title}}" class="w-full">
-      </div>
-      <div class="col-start-3 col-end-10">
-        <div class="grid grid-cols-2 gap-10">
-          <div>
-            <h1 class="text-4xl font-bold mb-3">{{movie.title}}</h1>
-          </div>
-          <div class="flex justify-end">
-            <img src="{{urlImg}}{{movie.production_companies[0].logo_path}}" alt="{{movie.production_companies[0].name}}" class="w-52 mb-5">
-          </div>
+  <section class="bg-center bg-no-repeat  bg-gray-100 bg-blend-multiply">
+      <div class="container mx-auto px-4 pt-12 pb-12 py-5">
+      <div class="grid grid-cols-10 gap-8">
+        <div class="col-span-2">
+          <img src="{{urlImg}}{{movie.poster_path}}" alt="{{movie.title}}" class="w-full">
         </div>
-        <p class="mb-5">
-          @for (genre of movie.genres; track genre.id) {
-          <a routerLink="/category/{{genre.id}}"
-            class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-blue-900 dark:text-blue-300 text-hover:bg-blue-200 hover:text-white hover:bg-sky-700">{{genre.name}}</a>
-          }
-        </p>
-        <h2 class="mb-3 font-bold">{{movie.release_date}}</h2>
-        <p class="mb-3 mt-3"><span class="font-bold">Language:</span> {{movie.original_language}}</p>
-        <p class="mb-3 mt-3"><span class="font-bold">Budget:</span> {{movie.budget | currency: 'USD': 'symbol'}}</p>        
-        
-        <h3 class="text-3xl font-bold mb-3">Resume</h3>
-        <p>{{movie.overview}}</p>
+        <div class="col-start-3 col-end-10">
+          <div class="grid grid-cols-2 gap-10">
+            <div>
+              <h1 class="text-4xl font-bold mb-3">{{movie.title}}</h1>
+              <p class="mb-5">
+                @for (genre of movie.genres; track genre.id) {
+                  <a routerLink="/category/{{genre.id}}"
+                  class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-blue-900 dark:text-blue-300 text-hover:bg-blue-200 hover:text-white hover:bg-sky-700">{{genre.name}}</a>
+                }
+              </p>
+            </div>
+            <div class="flex justify-end">
+              <img src="{{urlImg}}{{movie.production_companies[0].logo_path}}" alt="{{movie.production_companies[0].name}}" class="w-52 mb-5 h-max" >
+            </div>
+          </div>
+          
+          <h2 class="mb-3 font-bold">{{movie.release_date}}</h2>
+          <p class="mb-3 mt-3"><span class="font-bold">Language:</span> {{movie.original_language}}</p>
+          <p class="mb-3 mt-3"><span class="font-bold">Budget:</span> {{movie.budget | currency: 'USD': 'symbol'}}</p>        
+          <p class="italic text-gray-600">{{movie.tagline}}</p>
+          <h3 class="text-3xl font-bold mb-3">Resume</h3>
+          <p>{{movie.overview}}</p>
+        </div>
       </div>
     </div>
+  </section>
+  <div class="container mx-auto mt-8 px-4 py-5">
     <h3 class="text-3xl font-bold mb-3 mt-5">Cast</h3>
     <div class="grid grid-cols-8 gap-8 mt-8">
       @for (actor of actors; track actor.id) {
-        @if ($index<8) { 
-          <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
           <a href="#">
             <img src="{{urlImg}}{{actor.profile_path}}" alt="{{actor.name}}" class="w-full">
           </a>
@@ -39,9 +43,15 @@
             <h4 class="mb-2 text-1xl font-bold tracking-tight text-gray-900 dark:text-white">{{actor.name}}</h4>
             <h5>{{actor.character}}</h5>
           </div>
-      </div>
+        </div>
       }
-    }
+    </div>
+    
+    <h3 class="text-3xl font-bold mb-3 mt-5">Similar</h3>
+    <div class="grid grid-cols-6 gap-8 mt-8">
+      @for (similar of similarMovies; track similar.id) {
+        <app-card [movie]="similar" class="h-full"/>
+      }
+    </div>
   </div>
-</div>
 }
