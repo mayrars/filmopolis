@@ -3,7 +3,7 @@ import { MoviesService } from '../../services/movies.service';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Movie } from '../../models/movie.model';
 import { environment } from '../../../environments/environment';
-import { Actor } from '../../models/actor.model';
+import { Person } from '../../models/person.model';
 import { CurrencyPipe } from '@angular/common';
 import { DomSanitizer } from '@angular/platform-browser';
 import { CardComponent } from '../../components/card/card.component';
@@ -20,7 +20,7 @@ export class MovieComponent implements OnInit {
   private _router = inject(ActivatedRoute);
   urlImg: string = environment.imgUrl
   movie?:Movie
-  actors?:Actor[]
+  actors?:Person[]
   videos?:any[]
   similarMovies?:Movie[]
   ngOnInit(): void {
