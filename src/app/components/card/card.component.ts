@@ -2,6 +2,7 @@ import { Component, inject, Input, OnInit } from '@angular/core';
 import { Movie } from '../../models/movie.model';
 import { environment } from '../../../environments/environment';
 import { RouterLink } from '@angular/router';
+import { Show } from '../../models/tvshows.model';
 
 @Component({
   selector: 'app-card',
@@ -12,7 +13,9 @@ import { RouterLink } from '@angular/router';
 })
 export class CardComponent implements OnInit{
   @Input() movie?: Movie;
+  @Input() show?: Show;
   urlImg: string = environment.imgUrl
   ngOnInit(): void {
+    
   }
 }

@@ -1,10 +1,23 @@
-<a routerLink="/movie/{{movie?.id}}" title="{{ movie?.title }}" class="h-full">
-  <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 h-full">
-    <img src="{{urlImg}}{{movie?.poster_path}}" class="poster m-auto">
-    <div class="p-5">
-      <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white text-center">{{ movie?.title }}
-      </h5>
-      <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white text-center">{{ movie?.name }}</h5>
+@if(movie){
+  <a routerLink="/movie/{{movie.id}}" title="{{ movie.title }}" class="h-full">
+    <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 h-full">
+      <img src="{{urlImg}}{{movie.poster_path}}" class="poster m-auto">
+      <div class="p-5">
+        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white text-center">{{ movie.title }}
+        </h5>
+        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white text-center">{{ movie.name }}</h5>
+      </div>
     </div>
-  </div>
-</a>
+  </a>
+}@else{
+  <a routerLink="/tvshow/{{show?.id}}" title="{{ show?.name }}" class="h-full">
+    <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 h-full">
+      <img src="{{urlImg}}{{show?.poster_path}}" class="poster m-auto">
+      <div class="p-5">
+        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white text-center">{{ show?.name }}
+        </h5>
+        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white text-center">{{ show?.name }}</h5>
+      </div>
+    </div>
+  </a>
+}
