@@ -11,14 +11,14 @@ export class MoviesService {
   private http = inject(HttpClient)
   private baseUrl = environment.apiUrl
   constructor() {}
-  //Trending series and movies
+  //More rated
   getTrendingNow():Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders()
       .set('Content-Type', 'application/json')
       .set('Authorization',`Bearer ${environment.apiKey}`)
     };
-    return this.http.get(`${this.baseUrl}trending/all/week`,httpOptions)
+    return this.http.get(`${this.baseUrl}movie/top_rated?`,httpOptions)
   }
   
   //Trendig Movies
