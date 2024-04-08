@@ -30,7 +30,6 @@ export class TvshowComponent implements OnInit {
       })
       this._tvshowsService.getImages(id).subscribe((data:any) => {
         this.images = data.backdrops.slice(0,20);
-        console.log(this.images)
       })
     })
   }
