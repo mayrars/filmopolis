@@ -1,0 +1,119 @@
+@if(show){
+  <section class="bg-center bg-no-repeat  bg-blue-100 bg-blend-multiply">
+    <div class="container mx-auto px-4 pt-12 pb-12 py-5">
+      <div class="grid grid-cols-10 gap-8">
+        <div class="col-span-2">
+          <img src="{{urlImg}}{{show.poster_path}}" alt="{{show.name}}" class="w-full">
+        </div>
+        <div class="col-start-3 col-end-10">
+          <div class="grid grid-cols-2 gap-10">
+            <div>
+              <h1 class="text-4xl font-bold mb-3">{{show.name}}</h1>
+              <p class="mb-5">
+                @for (genre of show.genres; track genre.id) {
+                <a routerLink="/categoriestv/{{genre.id}}"
+                  class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-blue-900 dark:text-blue-300 text-hover:bg-blue-200 hover:text-white hover:bg-sky-700">{{genre.name}}</a>
+                }
+              </p>
+            </div>
+            <div class="flex justify-end">
+              <img src="{{urlImg}}{{show.production_companies[0].logo_path}}" alt="{{show.production_companies[0].name}}"
+                class="w-52 mb-5 h-max">
+            </div>
+          </div>
+
+          <h2 class="mb-3 font-bold">{{show.first_air_date}}</h2>
+          <p class="mb-3 mt-3"><span class="font-bold">Language:</span> {{show.original_language}}</p>
+          <p class="mb-3 mt-3"><span class="font-bold">Episodes:</span> {{show.number_of_episodes}}</p>
+          <p class="mb-3 mt-3"><span class="font-bold">Seasons:</span> {{show.number_of_seasons}}</p>
+          <p class="italic text-gray-600">{{show.tagline}}</p>
+          <h3 class="text-3xl font-bold mb-3">Resume</h3>
+          <p>{{show.overview}}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="container mx-auto mt-8 px-4 py-5">
+    <h3 class="text-3xl font-bold mb-3 mt-5">Cast</h3>
+    <div class="grid grid-cols-8 gap-8 mt-8">
+      @for (actor of actors; track actor.id) {
+      <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        <a href="#">
+          <img src="{{urlImg}}{{actor.profile_path}}" alt="{{actor.name}}" class="w-full">
+        </a>
+        <div class="p-5">
+          <h4 class="mb-2 text-1xl font-bold tracking-tight text-gray-900 dark:text-white">{{actor.name}}</h4>
+          <h5>{{actor.character}}</h5>
+        </div>
+      </div>
+      }
+    </div>
+
+    <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
+      <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="default-tab"
+        data-tabs-toggle="#default-tab-content" role="tablist">
+        <li class="me-2" role="presentation">
+          <button class="inline-block p-4 border-b-2 rounded-t-lg" id="seasons-tab" data-tabs-target="#profile"
+            type="button" role="tab" aria-controls="profile" aria-selected="false">Seasons</button>
+        </li>
+        <li class="me-2" role="presentation">
+          <button
+            class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+            id="images-tab" data-tabs-target="#images" type="button" role="tab" aria-controls="images"
+            aria-selected="false">Images</button>
+        </li>
+        <li class="me-2" role="presentation">
+          <button
+            class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+            id="videos-tab" data-tabs-target="#videos" type="button" role="tab" aria-controls="videos"
+            aria-selected="false">Videos</button>
+        </li>
+      </ul>
+    </div>
+    <div id="default-tab-content">
+      <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="profile" role="tabpanel"
+        aria-labelledby="seasons-tab">
+        @if(show.seasons){
+          <h3 class="text-3xl font-bold mb-3 mt-5">Seasons</h3>
+          <div class="grid grid-cols-6 gap-8 mt-8">
+            @for (season of show.seasons; track season.id) {
+              <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                <a href="#">
+                  <img class="rounded-t-lg" src="{{urlImg}}{{season.poster_path}}" alt="" />
+                </a>
+                <div class="p-5">
+                  <a href="#">
+                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{season.name}}</h5>
+                  </a>
+                  <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Episodes: {{season.episode_count}}</p>
+                </div>
+              </div>
+            }
+          </div>
+        }
+      </div>
+      <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="images" role="tabpanel" aria-labelledby="images-tab">
+        @if (images) {
+          <div class="grid grid-cols-6 gap-8 mt-8">
+            @for (image of images; track $index) {
+              <img src="{{urlImg}}{{image.file_path}}" alt="{{show.name}}" class="w-full">
+            }
+          </div>
+        }
+      </div>
+      <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="videos" role="tabpanel"
+        aria-labelledby="videos-tab">
+        <p class="text-sm text-gray-500 dark:text-gray-400">This is some placeholder content the <strong
+            class="font-medium text-gray-800 dark:text-white">Settings tab's associated content</strong>. Clicking another
+          tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content
+          visibility and styling.</p>
+      </div>
+    </div>
+
+
+
+
+
+
+  </div>
+}
