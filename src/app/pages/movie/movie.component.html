@@ -33,7 +33,7 @@
   </section>
   <div class="container mx-auto mt-8 px-4 py-5">
     <h3 class="text-3xl font-bold mb-3 mt-5">Cast</h3>
-    <div class="grid grid-cols-8 gap-8 mt-8">
+    <div class="grid grid-cols-8 gap-8 mt-8 overflow-auto">
       @for (actor of actors; track actor.id) {
         <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
           <a href="#">
