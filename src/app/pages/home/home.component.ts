@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { MoviesService } from '../../services/movies.service';
+import { ApiService } from '../../services/api.service';
 import { AsyncPipe } from '@angular/common';
 import { Movie } from '../../models/movie.model';
 import { environment } from '../../../environments/environment';
@@ -13,15 +13,15 @@ import { CardComponent } from '../../components/card/card.component';
   styleUrl: './home.component.css'
 })
 export class HomeComponent implements OnInit{
-  private _moviesService = inject(MoviesService);
+  private _apiService = inject(ApiService);
   topTrending: Movie[] = [];
   popularMovies: Movie[] = [];
   urlImg: string = environment.imgUrl
   ngOnInit(): void {
-    this._moviesService.getPopularMovies().subscribe((data)=>{
+    this._apiService.getPopularMovies().subscribe((data)=>{
       this.popularMovies = data.results.slice(0,8)
     })
-    this._moviesService.getTrendingNow().subscribe(data=>{
+    this._apiService.getTrendingNow().subscribe(data=>{
       this.topTrending = data.results.slice(0,8)
     })
   }

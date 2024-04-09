@@ -1,8 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { MoviesService } from '../../services/movies.service';
+import { ApiService } from '../../services/api.service';
 import { Categorie } from '../../models/category.model';
 import { RouterLink } from '@angular/router';
-import { TvshowsService } from '../../services/tvshows.service';
 
 @Component({
   selector: 'app-header',
@@ -12,15 +11,14 @@ import { TvshowsService } from '../../services/tvshows.service';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent implements OnInit{
-  private _moviesService = inject(MoviesService);
-  private _tvshowsService = inject(TvshowsService);
+  private _apiService = inject(ApiService);
   categories: Categorie[] = [];
   tvcategories: Categorie[] = [];
   ngOnInit(): void {
-    this._moviesService.getCategories().subscribe(data=>{
+    this._apiService.getCategories().subscribe(data=>{
       this.categories = data.genres
     })
-    this._tvshowsService.getCategories().subscribe(data=>{
+    this._apiService.getTvCategories().subscribe(data=>{
       this.tvcategories = data.genres
     })
   }

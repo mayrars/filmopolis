@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { MoviesService } from '../../services/movies.service';
+import { ApiService } from '../../services/api.service';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Movie } from '../../models/movie.model';
 import { environment } from '../../../environments/environment';
@@ -23,12 +23,12 @@ export class CategoryComponent implements OnInit{
   itemsPerPage:number=20;
   totalResults: number = 0;
   urlImg: string = environment.imgUrl
-  private _moviesService = inject(MoviesService);
+  private _apiService = inject(ApiService);
   private _router = inject(ActivatedRoute);
   ngOnInit(): void {
     this._router.params.subscribe(params => {
       this.categoryId = params['id'];
-      this._moviesService.getMovies(params['id'],1).subscribe(data=>{
+      this._apiService.getMovies(params['id'],1).subscribe(data=>{
         this.currentPage = data.page;
         this.totalPages = data.total_pages;
         this.totalResults = data.total_results;
@@ -37,7 +37,7 @@ export class CategoryComponent implements OnInit{
     })
   }
   changePage(page:number){
-    this._moviesService.getMovies(this.categoryId,page).subscribe(data=>{
+    this._apiService.getMovies(this.categoryId,page).subscribe(data=>{
       this.currentPage = data.page;
       this.totalPages = data.total_pages;
       this.totalResults = data.total_results;
