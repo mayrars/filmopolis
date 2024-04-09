@@ -136,4 +136,13 @@ export class ApiService {
     }
     return this.http.get(`${this.baseUrl}tv/${showId}/images`, httpOptions)
   }
+  getByTitle(title: string){
+    const query = title!='' ? `&query=${title}` : ''
+    const httpOptions = {
+      headers: new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('Authorization',`Bearer ${environment.apiKey}`)
+    }
+    return this.http.get(`${this.baseUrl}search/multi?include_adult=false${query}`, httpOptions)
+  }
 }
