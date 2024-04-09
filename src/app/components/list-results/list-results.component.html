@@ -1,0 +1,5 @@
+<div class="`absolute z-10 w-full border divide-y shadow max-h-72 overflow-y-auto bg-white h-32" [ngClass]="hidden ? 'hidden' : 'show'">
+    @for (result of results; track result.id) {
+        <a class="block p-2 hover:bg-indigo-50" href="#">{{result.title }}</a>
+    }
+</div>
