@@ -43,4 +43,7 @@ export class HeaderComponent implements OnInit{
       this.hiddenResults = false
     })
   }
+  close(show:boolean){
+    this.hiddenResults = show
+  }
 }
