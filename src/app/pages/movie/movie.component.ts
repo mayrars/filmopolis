@@ -35,7 +35,6 @@ export class MovieComponent implements OnInit {
       this._apiService.getVideos(id).subscribe((data:any) => {        
         if(data.results.length > 0){
           this.videos = data.results
-          console.log(this.videos)
         }
       })
       this._apiService.getSimilar(id).subscribe((data:any) => {
