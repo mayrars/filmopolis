@@ -13,5 +13,6 @@ export const routes: Routes = [
     {path:"categoriestv/:id",component:TvshowCategoryComponent},
     {path:"movie/:id",component:MovieComponent},
     {path:"tvshow/:id",component:TvshowComponent},
+    {path:"person/:id",component:TvshowComponent},
     {path:"**",component:HomeComponent},
 ];
