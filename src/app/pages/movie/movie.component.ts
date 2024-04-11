@@ -5,7 +5,6 @@ import { Movie } from '../../models/movie.model';
 import { environment } from '../../../environments/environment';
 import { Person } from '../../models/person.model';
 import { CurrencyPipe } from '@angular/common';
-import { DomSanitizer } from '@angular/platform-browser';
 import { CardComponent } from '../../components/card/card.component';
 
 @Component({
