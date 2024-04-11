@@ -1,30 +1,21 @@
 <div class="absolute z-10 w-full border divide-y shadow max-h-82 overflow-y-auto bg-white h-60" [ngClass]="hidden ? 'hidden' : 'show'" id="results">
   @for (result of results; track result.id) {
-    <a class="p-2 text-black hover:bg-indigo-50 hover:text-black block" [routerLink]="[result.media_type=='movie' ? '/movie/' : '/tvshow/',result.id]" (click)="close()">
+    <a class="p-2 text-black hover:bg-indigo-50 hover:text-black block" [routerLink]="[result.media_type=='movie' ? '/movie/' : result.media_type=='tvshow' ? '/tvshow/' : '/person/',result.id]" (click)="close()">
       <div class="grid grid-cols-5 gap-4 w-full">
         <div class="col-auto">
-          @if(results.media_type=='person') {        
-            <img src="{{urlImg}}{{result.profile_path}}" class="w-10 h-10" />
-          
+          @if(result.media_type=='person') {        
+            <img src="{{urlImg}}{{result.profile_path}}" class="w-10 h-10" />          
           }@else{
-
-            <img src="{{urlImg}}{{result.poster_path}}" class="w-10 h-10" />
-          
-        }
+            <img src="{{urlImg}}{{result.poster_path}}" class="w-10 h-10" />          
+          }
         </div>
         <div class="col-span-4">
           <p>
-            @switch(result.media_type) {              
-              @case ('tv') {
-                {{result.name}}
-              }
-              @case ('person') {
-                {{result.name}}
-              }              
-              @default {                
-                {{result.title}}
-              }
-            }         
+            @if(result.media_type=='person' || result.media_type=='tv') {
+              {{result.name}}
+            }@else{
+              {{result.title}}
+            }    
           </p>
         </div>
       </div>
