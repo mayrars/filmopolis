@@ -36,7 +36,7 @@
     <div class="grid grid-cols-8 gap-8 mt-8 overflow-auto">
       @for (actor of actors; track actor.id) {
         <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-          <a href="#">
+          <a routerLink="/person/{{actor.id}}">
             <img src="{{urlImg}}{{actor.profile_path}}" alt="{{actor.name}}" class="w-full">
           </a>
           <div class="p-5">
