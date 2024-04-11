@@ -5,6 +5,7 @@ import { CategoriesComponent } from './pages/categories/categories.component';
 import { MovieComponent } from './pages/movie/movie.component';
 import { TvshowComponent } from './pages/tvshow/tvshow.component';
 import { TvshowCategoryComponent } from './pages/tvshow-category/tvshow-category.component';
+import { PersonComponent } from './pages/person/person.component';
 
 export const routes: Routes = [
     {path:"",component:HomeComponent},
@@ -13,6 +14,6 @@ export const routes: Routes = [
     {path:"categoriestv/:id",component:TvshowCategoryComponent},
     {path:"movie/:id",component:MovieComponent},
     {path:"tvshow/:id",component:TvshowComponent},
-    {path:"person/:id",component:TvshowComponent},
+    {path:"person/:id",component:PersonComponent},
     {path:"**",component:HomeComponent},
 ];
