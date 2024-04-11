@@ -1,1 +1,42 @@
-<p>person works!</p>
+<div class="container mx-auto px-4 pt-12 pb-12 py-5">
+  <div class="grid grid-cols-10 gap-8">
+    <div class="col-span-2">
+      <img src="{{urlImg}}{{person?.profile_path}}" />
+      <div class="flex mt-3">
+        <a href="https://www.facebook.com/{{socialNetwork?.facebook_id}}" target="_blank" class="me-3">
+          <img src="assets/icons/facebook.svg" />
+        </a>
+        <a href="https://twitter.com/{{socialNetwork?.twitter_id}}" target="_blank" class="me-3">
+          <img src="assets/icons/twitter.svg" />
+        </a>
+        <a href="https://instagram.com/{{socialNetwork?.instagram_id}}" target="_blank" class="me-3">
+          <img src="assets/icons/instagram.svg" />
+        </a>
+      </div>
+      
+      <h2 class="font-bold text-2xl mt-5 mb-5">Images</h2>
+      <div class="grid grid-cols-3 gap-4 mt-3">
+        @for (image of images; track $index) {
+          <div>
+            <img src="{{urlImg}}{{image.file_path}}">
+          </div>
+        }
+      </div>
+    </div>
+    <div class="col-span-8">
+      <h1 class="text-3xl font-bold mb-3">{{person?.name}}</h1>
+      <h2 class="text-1xl mb-3"><span class="font-bold">Popularity: </span>{{person?.popularity}}%</h2>
+      <h2 class="text-2xl font-bold mt-3 ">Personal information</h2>
+      <p class="font-bold mt-2">Birthday:</p>
+      <p>{{person?.birthday}}</p>
+      <p class="font-bold mt-2">Place of birth:</p>
+      <p>{{person?.place_of_birth}}</p>
+      <p class="font-bold mt-2">Also known as:</p>
+      <p>{{person?.also_known_as}}</p>
+      <h2 class="text-1xl font-bold mb-3">Biography</h2>
+      <p>{{person?.biography}}</p>
+      
+      
+    </div>
+  </div>
+</div>
