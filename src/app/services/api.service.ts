@@ -3,6 +3,7 @@ import { environment } from '../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { Movie } from '../models/movie.model';
+import { Person } from '../models/person.model';
 
 @Injectable({
   providedIn: 'root'
@@ -144,5 +145,37 @@ export class ApiService {
       .set('Authorization',`Bearer ${environment.apiKey}`)
     }
     return this.http.get(`${this.baseUrl}search/multi?include_adult=false${query}`, httpOptions)
+  }
+  getPerson(id:number):Observable<any>{
+    const httpOptions = {
+      headers: new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('Authorization',`Bearer ${environment.apiKey}`)
+    }
+    return this.http.get(`${this.baseUrl}person/${id}`, httpOptions)
+  }
+  getSocialNetwork(id:number):Observable<any>{
+    const httpOptions = {
+      headers: new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('Authorization',`Bearer ${environment.apiKey}`)
+    }
+    return this.http.get(`${this.baseUrl}person/${id}/external_ids`, httpOptions)
+  }
+  getPersonImages(id:number):Observable<any>{
+    const httpOptions = {
+      headers: new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('Authorization',`Bearer ${environment.apiKey}`)
+    }
+    return this.http.get(`${this.baseUrl}person/${id}/images`, httpOptions)
+  }
+  getPersonCredits(id:number):Observable<any>{
+    const httpOptions = {
+      headers: new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('Authorization',`Bearer ${environment.apiKey}`)
+    }
+    return this.http.get(`${this.baseUrl}person/${id}/movie_credits`, httpOptions)
   }
 }
