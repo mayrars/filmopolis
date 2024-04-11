@@ -38,10 +38,15 @@ export class HeaderComponent implements OnInit{
   }
   searchByTitle(event:any){
     const value = event.target.value;
-    this._apiService.getByTitle(value).subscribe((data:any)=>{
-      this.listResults = data.results;
-      this.hiddenResults = false
-    })
+    if(value==null || value==''){
+      this.hiddenResults = true
+    }else{
+      this._apiService.getByTitle(value).subscribe((data:any)=>{
+        this.listResults = data.results;
+        this.hiddenResults = false
+        console.log(this.listResults)
+      })
+    }
   }
   close(show:boolean){
     this.hiddenResults = show
