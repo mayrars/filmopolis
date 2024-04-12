@@ -44,7 +44,6 @@ export class HeaderComponent implements OnInit{
       this._apiService.getByTitle(value).subscribe((data:any)=>{
         this.listResults = data.results;
         this.hiddenResults = false
-        console.log(this.listResults)
       })
     }
   }
