@@ -17,21 +17,21 @@ export class PersonComponent implements OnInit{
   urlImg: string = environment.imgUrl
   person?: Person
   socialNetwork?: any
-  images:any
+  images:any = []
 
+  
+  
   ngOnInit(): void {
     this._router.params.subscribe(params => {
       const id = params['id'];
       this._apiService.getPerson(id).subscribe((person: Person) => {
         this.person = person
-        console.log(this.person)
       });
       this._apiService.getSocialNetwork(id).subscribe((socialNetwork) => {
         this.socialNetwork = socialNetwork
       })
       this._apiService.getPersonImages(id).subscribe((data) => {
         this.images = data.profiles
-        console.log(this.images)
       })
     })
   }
