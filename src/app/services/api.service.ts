@@ -178,4 +178,12 @@ export class ApiService {
     }
     return this.http.get(`${this.baseUrl}person/${id}/movie_credits`, httpOptions)
   }
+  getUpcoming():Observable<any>{
+    const httpOptions = {
+      headers: new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('Authorization',`Bearer ${environment.apiKey}`)
+    }
+    return this.http.get(`${this.baseUrl}movie/upcoming`, httpOptions)
+  }
 }
