@@ -6,6 +6,7 @@ import { MovieComponent } from './pages/movie/movie.component';
 import { TvshowComponent } from './pages/tvshow/tvshow.component';
 import { TvshowCategoryComponent } from './pages/tvshow-category/tvshow-category.component';
 import { PersonComponent } from './pages/person/person.component';
+import { UpcomingComponent } from './pages/upcoming/upcoming.component';
 
 export const routes: Routes = [
     {path:"",component:HomeComponent},
@@ -15,5 +16,6 @@ export const routes: Routes = [
     {path:"movie/:id",component:MovieComponent},
     {path:"tvshow/:id",component:TvshowComponent},
     {path:"person/:id",component:PersonComponent},
+    {path:"upcoming",component:UpcomingComponent},
     {path:"**",component:HomeComponent},
 ];
