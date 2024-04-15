@@ -38,7 +38,7 @@
     <div class="grid grid-cols-8 gap-8 mt-8">
       @for (actor of actors; track actor.id) {
       <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-        <a href="#">
+        <a routerLink="/person/{{actor.id}}">
           <img src="{{urlImg}}{{actor.profile_path}}" alt="{{actor.name}}" class="w-full">
         </a>
         <div class="p-5">
@@ -49,12 +49,12 @@
       }
     </div>
     <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
-      <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="default-tab" data-tabs-toggle="#default-tab-content" role="tablist">
+      <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="default-style-tab" data-tabs-toggle="#default-tab-content"  role="tablist" data-tabs-active-classes="text-blue-600 hover:text-blue-600 dark:text-blue-500 dark:hover:text-purple-500 border-blue-600 dark:border-blue-500" data-tabs-inactive-classes="dark:border-transparent text-gray-500 hover:text-gray-600 dark:text-gray-400 border-gray-100 hover:border-gray-300 dark:border-gray-700 dark:hover:text-gray-300" role="tablist">
         <li class="me-2" role="presentation">
-          <button class="inline-block p-4 border-b-2 rounded-t-lg" id="seasons-tab" data-tabs-target="#profile" type="button" role="tab" aria-controls="profile">Seasons</button>
+          <button class="inline-block p-4 border-b-2 rounded-t-lg" id="seasons-tab"  aria-current="page" data-tabs-target="#profile" type="button" role="tab" aria-controls="profile">Seasons</button>
         </li>
         <li class="me-2" role="presentation">
-          <button class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="images-tab" data-tabs-target="#images" type="button" role="tab" aria-controls="images">Images</button>
+          <button class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="images-tab" data-tabs-target="#images" type="button" role="tab" aria-controls="images" aria-selected="false">Images</button>
         </li>
         <li class="me-2" role="presentation">
           <button
